@@ -1,0 +1,3 @@
+{"task_id":"t1","prompt":"Name the capital of France.","reference":"Paris","tags":["factual"]}
+{"task_id":"t2","prompt":"What is 2 + 2? Give the integer only.","reference":"4","tags":["arithmetic"]}
+{"task_id":"t3","prompt":"Complete this sentence with one word: The opposite of hot is ___.","reference":"cold","tags":["completion"]}
