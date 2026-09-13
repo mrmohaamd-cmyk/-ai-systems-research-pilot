@@ -1,0 +1,25 @@
+test_binomial_interval_known_boundary (test_core.PilotTests.test_binomial_interval_known_boundary) ... ok
+test_budget_requires_entire_planned_sample (test_core.PilotTests.test_budget_requires_entire_planned_sample) ... ok
+test_correct_pairing_and_fixed_denominator (test_core.PilotTests.test_correct_pairing_and_fixed_denominator) ... ok
+test_cost_bound_incident_stops_live_adapter_and_resume (test_core.PilotTests.test_cost_bound_incident_stops_live_adapter_and_resume) ... ok
+test_exceeded_output_cap_stops_followup_calls (test_core.PilotTests.test_exceeded_output_cap_stops_followup_calls) ... ok
+test_freeze_and_key_tamper_rejected (test_core.PilotTests.test_freeze_and_key_tamper_rejected) ... ok
+test_http_contract_without_network (test_core.PilotTests.test_http_contract_without_network) ... ok
+test_interrupted_attempt_not_retried (test_core.PilotTests.test_interrupted_attempt_not_retried) ... ok
+test_key_hash_mismatch_rejected (test_core.PilotTests.test_key_hash_mismatch_rejected) ... ok
+test_live_template_fails_closed (test_core.PilotTests.test_live_template_fails_closed) ... ok
+test_missing_usage_stops_and_blocks_resume (test_core.PilotTests.test_missing_usage_stops_and_blocks_resume) ... ok
+test_no_adoption_from_no_discordance (test_core.PilotTests.test_no_adoption_from_no_discordance) ... ok
+test_prepare_disjoint_split_and_provenance (test_core.PilotTests.test_prepare_disjoint_split_and_provenance) ... ok
+test_request_size_limit_sends_nothing_and_keeps_denominator (test_core.PilotTests.test_request_size_limit_sends_nothing_and_keeps_denominator) ... ok
+test_resume_sends_no_duplicate_requests (test_core.PilotTests.test_resume_sends_no_duplicate_requests) ... ok
+test_scorer_numeric_equivalence_and_rejection (test_core.PilotTests.test_scorer_numeric_equivalence_and_rejection) ... ok
+test_shared_initial_and_no_answer_key_in_requests (test_core.PilotTests.test_shared_initial_and_no_answer_key_in_requests) ... ok
+test_task_keys_and_duplicate_questions_rejected (test_core.PilotTests.test_task_keys_and_duplicate_questions_rejected) ... ok
+test_timeout_and_missing_tasks_remain_in_denominator (test_core.PilotTests.test_timeout_and_missing_tasks_remain_in_denominator) ... ok
+test_unexpected_or_duplicate_ledger_records_rejected (test_core.PilotTests.test_unexpected_or_duplicate_ledger_records_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.126s
+
+OK

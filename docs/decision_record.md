@@ -54,7 +54,7 @@ No elapsed-time or cost claims are derived from fixture timings. Marginal infere
 
 ## Verification and remaining work
 
-Source verification uses the tests in `tests/test_core.py`. A recorded CLI fixture run will include its exact source commit, code/spec hashes, frozen configuration and complete ledger. Scripted outcomes must always retain `verification_only=true` and `NO_EFFICACY_INFERENCE_FIXTURE`.
+Source verification passed all 20 tests in `tests/test_core.py`. The [recorded CLI fixture run](verification_record.md) includes its exact source commit, code/spec hashes, frozen configuration and complete ledger: 20 scripted stages, no missing records, and no duplicate requests on resumption. Scripted outcomes retain `verification_only=true` and `NO_EFFICACY_INFERENCE_FIXTURE`.
 
 Prepared: reproducible acquisition, 20 development and 60 separate candidate evaluation tasks, manifests, versioned prompts/config, frozen-run machinery, HTTP adapter and offline analysis. Evaluated: **no real model**. Operationally validated: **no**. Live endpoint smoke testing and provider billing verification remain required before the held-out feasibility run.
 

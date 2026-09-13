@@ -16,6 +16,8 @@ B and C receive identical initial answers and use the same finalisation prompt. 
 
 Read the [experiment specification](docs/experiment_spec.md), [evidence synthesis](docs/evidence.md), and [decision and capability record](docs/decision_record.md).
 
+The [verification record](docs/verification_record.md) contains the 20 passing tests, the source-linked fixture run and its complete ledger.
+
 ## Verify locally
 
 Use Python 3.12 on Linux or macOS; verification used Python 3.12.14 on Linux. There are no third-party runtime dependencies and no installation step. POSIX file locking means native Windows is currently unsupported. Run from this repository's root:
