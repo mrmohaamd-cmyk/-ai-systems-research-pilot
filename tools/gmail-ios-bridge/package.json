@@ -1,8 +1,12 @@
 {
   "name": "gmail-ios-bridge",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "description": "Minimal privacy-preserving bridge from HTTPS to Gmail iOS conversation deep links.",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
