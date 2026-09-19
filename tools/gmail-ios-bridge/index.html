@@ -9,59 +9,61 @@
 :root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color-scheme:light dark}
 body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:#111}
 main{max-width:34rem;padding:2rem;text-align:center}
-h1{font-size:1.25rem;margin:0 0 .65rem}
+h1{font-size:1.3rem;margin:0 0 .7rem}
 p{line-height:1.45;color:#666}
-a,button{display:inline-block;margin:.5rem;padding:.85rem 1.1rem;border-radius:12px;border:0;text-decoration:none;font:inherit}
-a{background:#0b57d0;color:#fff}
-button{background:#eee;color:#111}
-@media(prefers-color-scheme:dark){body{background:#000;color:#fff}p{color:#aaa}button{background:#222;color:#fff}}
+button{display:inline-block;margin:.55rem;padding:.9rem 1.15rem;border-radius:12px;border:0;font:inherit;font-weight:600;background:#0b57d0;color:#fff}
+code{display:block;margin:1rem auto;padding:.8rem;border-radius:10px;background:#f2f2f2;word-break:break-all;text-align:left;font-size:.8rem}
+#fallback{display:none}
+@media(prefers-color-scheme:dark){body{background:#000;color:#fff}p{color:#aaa}code{background:#1d1d1d}}
 </style>
 </head>
 <body>
 <main>
-<h1>Opening Gmail…</h1>
-<p id="status">Trying the exact conversation.</p>
-<a id="open" href="#">Open in Gmail</a>
-<button id="copy" type="button">Copy fallback search</button>
+<h1>Open in Gmail</h1>
+<p>This iPhone Gmail build does not expose a reliable deep link to an arbitrary existing message. This helper copies an exact Gmail search, then opens Gmail.</p>
+<button id="go" type="button">Copy search &amp; open Gmail</button>
+<div id="fallback">
+<p>If the search was not copied, copy this and paste it into Gmail Search:</p>
+<code id="query"></code>
+</div>
 </main>
 <script>
 (() => {
   const p = new URLSearchParams(location.hash.replace(/^#/,''));
-  const th = p.get('th') || '';
-  const account = p.get('a') || '1';
   const q = p.get('q') || '';
-  const status = document.getElementById('status');
-  const open = document.getElementById('open');
-  const copy = document.getElementById('copy');
+  const go = document.getElementById('go');
+  const fallback = document.getElementById('fallback');
+  const query = document.getElementById('query');
 
-  if (!/^[0-9a-f]+$/i.test(th) || !/^\d+$/.test(account)) {
-    status.textContent = 'Missing or invalid Gmail conversation target.';
-    open.hidden = true;
-    copy.hidden = true;
+  if (!q || q.length > 1000) {
+    go.disabled = true;
+    go.textContent = 'Missing Gmail search';
     return;
   }
+  query.textContent = q;
 
-  // Legacy Gmail iOS conversation route. This is materially different from the
-  // unsupported /search route: it addresses a concrete Gmail conversation id.
-  const gmailUrl = 'googlegmail:///cv=' + encodeURIComponent(th) +
-                   '/accountId=' + encodeURIComponent(account) +
-                   '&create-new-tab';
-  open.href = gmailUrl;
-
-  copy.addEventListener('click', async () => {
-    const text = q || ('rfc822msgid:' + th);
+  go.addEventListener('click', () => {
+    let copied = false;
     try {
-      await navigator.clipboard.writeText(text);
-      status.textContent = 'Fallback search copied.';
-    } catch {
-      status.textContent = 'Fallback search: ' + text;
-    }
-  });
+      const ta = document.createElement('textarea');
+      ta.value = q;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      copied = document.execCommand('copy');
+      ta.remove();
+    } catch {}
 
-  setTimeout(() => { location.href = gmailUrl; }, 25);
-  setTimeout(() => {
-    status.textContent = 'If Gmail did not open automatically, tap Open in Gmail.';
-  }, 900);
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(q).catch(() => {});
+    }
+
+    fallback.style.display = copied ? 'none' : 'block';
+    window.location.href = 'googlegmail://';
+  });
 })();
 </script>
 </body>
