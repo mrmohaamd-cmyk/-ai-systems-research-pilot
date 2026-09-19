@@ -6,60 +6,61 @@
 <title>Open in Gmail</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
-  :root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color-scheme:light dark}
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:#111}
-  main{max-width:34rem;padding:2rem;text-align:center}
-  h1{font-size:1.25rem;margin:0 0 .65rem}
-  p{line-height:1.45;color:#666}
-  a,button{display:inline-block;margin:.5rem;padding:.85rem 1.1rem;border-radius:12px;border:0;text-decoration:none;font:inherit}
-  a{background:#0b57d0;color:#fff}
-  button{background:#eee;color:#111}
-  #status{font-size:.95rem}
-  @media(prefers-color-scheme:dark){body{background:#000;color:#fff}p{color:#aaa}button{background:#222;color:#fff}}
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color-scheme:light dark}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:#111}
+main{max-width:34rem;padding:2rem;text-align:center}
+h1{font-size:1.25rem;margin:0 0 .65rem}
+p{line-height:1.45;color:#666}
+a,button{display:inline-block;margin:.5rem;padding:.85rem 1.1rem;border-radius:12px;border:0;text-decoration:none;font:inherit}
+a{background:#0b57d0;color:#fff}
+button{background:#eee;color:#111}
+@media(prefers-color-scheme:dark){body{background:#000;color:#fff}p{color:#aaa}button{background:#222;color:#fff}}
 </style>
 </head>
 <body>
 <main>
-  <h1>Opening Gmail…</h1>
-  <p id="status">Trying the Gmail app.</p>
-  <a id="open" href="#">Open Gmail</a>
-  <button id="copy" type="button">Copy search</button>
+<h1>Opening Gmail…</h1>
+<p id="status">Trying the exact conversation.</p>
+<a id="open" href="#">Open in Gmail</a>
+<button id="copy" type="button">Copy fallback search</button>
 </main>
 <script>
 (() => {
-  const hash = new URLSearchParams(location.hash.replace(/^#/,''));
-  const query = hash.get('q') || '';
+  const p = new URLSearchParams(location.hash.replace(/^#/,''));
+  const th = p.get('th') || '';
+  const account = p.get('a') || '1';
+  const q = p.get('q') || '';
   const status = document.getElementById('status');
   const open = document.getElementById('open');
   const copy = document.getElementById('copy');
 
-  if (!query || query.length > 1000) {
-    status.textContent = 'Missing or invalid Gmail search.';
+  if (!/^[0-9a-f]+$/i.test(th) || !/^\d+$/.test(account)) {
+    status.textContent = 'Missing or invalid Gmail conversation target.';
     open.hidden = true;
     copy.hidden = true;
     return;
   }
 
-  // Fixed target scheme only: user input can affect only the encoded Gmail search query.
-  const gmailUrl = 'googlegmail:///search?query=' + encodeURIComponent(query);
+  // Legacy Gmail iOS conversation route. This is materially different from the
+  // unsupported /search route: it addresses a concrete Gmail conversation id.
+  const gmailUrl = 'googlegmail:///cv=' + encodeURIComponent(th) +
+                   '/accountId=' + encodeURIComponent(account) +
+                   '&create-new-tab';
   open.href = gmailUrl;
 
   copy.addEventListener('click', async () => {
+    const text = q || ('rfc822msgid:' + th);
     try {
-      await navigator.clipboard.writeText(query);
-      status.textContent = 'Search copied. Open Gmail and paste it into Search in mail.';
+      await navigator.clipboard.writeText(text);
+      status.textContent = 'Fallback search copied.';
     } catch {
-      status.textContent = 'Copy unavailable. Search: ' + query;
+      status.textContent = 'Fallback search: ' + text;
     }
   });
 
-  // Immediate handoff. If the embedded browser blocks automatic custom-scheme
-  // navigation, the visible Open Gmail button remains a direct user gesture fallback.
   setTimeout(() => { location.href = gmailUrl; }, 25);
-
-  // If still visible, explain the fallback without leaking the query to any server.
   setTimeout(() => {
-    status.textContent = 'If Gmail did not open automatically, tap Open Gmail.';
+    status.textContent = 'If Gmail did not open automatically, tap Open in Gmail.';
   }, 900);
 })();
 </script>
