@@ -11,7 +11,7 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;c
 main{max-width:34rem;padding:2rem;text-align:center}
 h1{font-size:1.3rem;margin:0 0 .7rem}
 p{line-height:1.45;color:#666}
-button{display:inline-block;margin:.55rem;padding:.9rem 1.15rem;border-radius:12px;border:0;font:inherit;font-weight:600;background:#0b57d0;color:#fff}
+a{display:inline-block;margin:.55rem;padding:.95rem 1.2rem;border-radius:12px;text-decoration:none;font:inherit;font-weight:600;background:#0b57d0;color:#fff}
 code{display:block;margin:1rem auto;padding:.8rem;border-radius:10px;background:#f2f2f2;word-break:break-all;text-align:left;font-size:.8rem}
 #fallback{display:none}
 @media(prefers-color-scheme:dark){body{background:#000;color:#fff}p{color:#aaa}code{background:#1d1d1d}}
@@ -20,10 +20,10 @@ code{display:block;margin:1rem auto;padding:.8rem;border-radius:10px;background:
 <body>
 <main>
 <h1>Open in Gmail</h1>
-<p>This iPhone Gmail build does not expose a reliable deep link to an arbitrary existing message. This helper copies an exact Gmail search, then opens Gmail.</p>
-<button id="go" type="button">Copy search &amp; open Gmail</button>
+<p>Tap once to copy the exact Gmail search and open the Gmail app.</p>
+<a id="go" href="googlegmail://">Copy search &amp; open Gmail</a>
 <div id="fallback">
-<p>If the search was not copied, copy this and paste it into Gmail Search:</p>
+<p>If paste is unavailable, copy this search manually:</p>
 <code id="query"></code>
 </div>
 </main>
@@ -36,13 +36,13 @@ code{display:block;margin:1rem auto;padding:.8rem;border-radius:10px;background:
   const query = document.getElementById('query');
 
   if (!q || q.length > 1000) {
-    go.disabled = true;
+    go.removeAttribute('href');
     go.textContent = 'Missing Gmail search';
     return;
   }
   query.textContent = q;
 
-  go.addEventListener('click', () => {
+  function copyNow() {
     let copied = false;
     try {
       const ta = document.createElement('textarea');
@@ -50,20 +50,20 @@ code{display:block;margin:1rem auto;padding:.8rem;border-radius:10px;background:
       ta.setAttribute('readonly','');
       ta.style.position = 'fixed';
       ta.style.opacity = '0';
+      ta.style.pointerEvents = 'none';
       document.body.appendChild(ta);
+      ta.focus();
       ta.select();
       ta.setSelectionRange(0, ta.value.length);
       copied = document.execCommand('copy');
       ta.remove();
     } catch {}
+    if (!copied) fallback.style.display = 'block';
+  }
 
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(q).catch(() => {});
-    }
-
-    fallback.style.display = copied ? 'none' : 'block';
-    window.location.href = 'googlegmail://';
-  });
+  // Crucial: keep navigation on the anchor's direct user gesture.
+  // Do not use location.href after clipboard work; iOS can block that app handoff.
+  go.addEventListener('click', copyNow, {capture:true});
 })();
 </script>
 </body>
