@@ -1,0 +1,8 @@
+{
+  "name": "gmail-ios-bridge",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
