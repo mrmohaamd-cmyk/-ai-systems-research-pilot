@@ -132,6 +132,12 @@ def validate_config(c, manifest, n):
         raise ValueError("Document the all-inclusive call bound and dated pricing source")
     if c["budget_usd"] + 1e-10 < n * 5 * c["per_call_reservation_usd"]:
         raise ValueError("Budget does not cover conservative reservations for every planned call")
+    for field in ("practical_accuracy_improvement", "acceptable_regression_rate"):
+        positive(c.get(field), field)
+        if c[field] > 1:
+            raise ValueError(f"{field} must be a proportion")
+    for field in ("acceptable_latency_seconds", "acceptable_cost_per_success_usd"):
+        positive(c.get(field), field)
     if manifest.get("purpose") not in ("fixture-verification", "development", "feasibility"):
         raise ValueError("This harness supports verification, development and feasibility only")
 
@@ -429,6 +435,32 @@ def tail(values, q):
     return sorted(values)[max(0, math.ceil(len(values)*q)-1)] if values else None
 
 
+def feasibility_screen(report, config):
+    """Prespecified point-estimate screen; never a production adoption decision."""
+    if report["verification_only"] or report["study_type"] != "feasibility":
+        return {"status": "NOT_APPLICABLE"}
+    n = report["conditions"]["B"]["planned_tasks"]
+    if (report["run_status"] != "complete" or report["missing_stage_records"] or
+            report["unpriced_attempts"] or report["physical_calls"] != 5 * n or
+            any(report["conditions"][c]["latency_complete_workflows_n"] != n for c in "ABC")):
+        return {"status": "INCONCLUSIVE", "reason": "Incomplete or unpriced planned workflows"}
+    b = report["conditions"]["B"]
+    accuracy = config["practical_accuracy_improvement"]
+    regression = config["acceptable_regression_rate"]
+    checks = {
+        "gain_over_A": report["contrasts"]["B_minus_A"]["difference"] >= accuracy,
+        "gain_over_C": report["contrasts"]["B_minus_C"]["difference"] >= accuracy,
+        "regressions_vs_A": report["contrasts"]["B_minus_A"]["regressions"] / n <= regression,
+        "regressions_vs_C": report["contrasts"]["B_minus_C"]["regressions"] / n <= regression,
+        "B_request_p95": b["p95_complete_request_time_s_exploratory"] <= config["acceptable_latency_seconds"],
+        "B_cost_per_correct": b["correct"] > 0 and b["known_standalone_cost_estimate_usd"] / b["correct"] <= config["acceptable_cost_per_success_usd"],
+    }
+    return {"status": "PASS_FURTHER_STUDY" if all(checks.values()) else "FAIL_FEASIBILITY_SCREEN",
+            "checks": checks, "thresholds": {k: config[k] for k in (
+                "practical_accuracy_improvement", "acceptable_regression_rate",
+                "acceptable_latency_seconds", "acceptable_cost_per_success_usd")}}
+
+
 def analyze(run_dir, key_path):
     run_dir = Path(run_dir)
     meta = read_json(run_dir / "run.json")
@@ -504,6 +536,7 @@ def analyze(run_dir, key_path):
                               "Shared A is charged in each standalone workflow but only once in physical totals.",
                               "Intervals assume independent task units; benchmark contamination and transfer remain unresolved.",
                               "Fixture token counts are synthetic and fixture latency is not model latency."]}
+    report["feasibility_screen"] = feasibility_screen(report, frozen["config"])
     write_json(run_dir / "analysis.json", report)
     return report
 
