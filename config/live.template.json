@@ -24,8 +24,8 @@
   "max_seconds": 3600,
   "timeout_seconds": 60,
   "max_request_bytes": 65536,
-  "practical_accuracy_improvement": null,
-  "acceptable_latency_seconds": null,
-  "acceptable_cost_per_success_usd": null,
-  "acceptable_regression_rate": null
+  "practical_accuracy_improvement": 0.05,
+  "acceptable_latency_seconds": 30,
+  "acceptable_cost_per_success_usd": 0.10,
+  "acceptable_regression_rate": 0.10
 }
