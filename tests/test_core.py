@@ -134,6 +134,23 @@ class PilotTests(unittest.TestCase):
         self.assertAlmostEqual(pilot.binomial_interval(60, 60)[0], .025**(1/60), places=10)
         self.assertAlmostEqual(pilot.paired_summary([1]*6, [0]*6)["mcnemar_exact_p_unadjusted"], .03125)
 
+    def test_feasibility_screen_is_bounded_and_never_adoption(self):
+        c = pilot.read_json(pilot.ROOT / "config/live.template.json")
+        report = {"verification_only": False, "study_type": "feasibility", "run_status": "complete",
+                  "missing_stage_records": 0, "unpriced_attempts": 0, "physical_calls": 300,
+                  "conditions": {x: {"planned_tasks": 60, "latency_complete_workflows_n": 60} for x in "ABC"},
+                  "contrasts": {"B_minus_A": {"difference": .05, "regressions": 6},
+                                "B_minus_C": {"difference": .05, "regressions": 6}}}
+        report["conditions"]["B"].update(correct=30, known_standalone_cost_estimate_usd=3,
+                                          p95_complete_request_time_s_exploratory=30)
+        self.assertEqual(pilot.feasibility_screen(report, c)["status"], "PASS_FURTHER_STUDY")
+        report["contrasts"]["B_minus_C"]["difference"] = 0
+        self.assertEqual(pilot.feasibility_screen(report, c)["status"], "FAIL_FEASIBILITY_SCREEN")
+        report["unpriced_attempts"] = 1
+        self.assertEqual(pilot.feasibility_screen(report, c)["status"], "INCONCLUSIVE")
+        report["verification_only"] = True
+        self.assertEqual(pilot.feasibility_screen(report, c)["status"], "NOT_APPLICABLE")
+
     def test_live_template_fails_closed(self):
         with self.assertRaises(ValueError):
             pilot.validate_config(pilot.read_json(pilot.ROOT / "config/live.template.json"), pilot.read_json(self.manifest), 4)
