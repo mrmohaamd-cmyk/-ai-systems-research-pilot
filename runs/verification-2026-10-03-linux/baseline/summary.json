@@ -1,0 +1,22 @@
+{
+  "base_git_commit": "9f241074a23d0b5c4828db0df1ca9f5788aac752",
+  "code_commit": "9f241074a23d0b5c4828db0df1ca9f5788aac752",
+  "git_worktree_dirty": false,
+  "code_sha256": "b32be121601ca4c69392de54b9fb4700eee45ea9569ef4150bae72f97b436aa7",
+  "freeze_id": "fd89a0f72427483ad27e2d593b4a4d6c6e15262a8acf262c22ea99b641c9f6da",
+  "tests_passed": 21,
+  "physical_calls": 20,
+  "ledger_events": 40,
+  "run_status": "complete",
+  "missing_stage_records": 0,
+  "correct_per_condition": {
+    "A": 2,
+    "B": 2,
+    "C": 2
+  },
+  "decision": "NO_EFFICACY_INFERENCE_FIXTURE",
+  "ledger_sha256_before_resume": "181729e0a078d1e06a50bd2791cbcd6d6898ab9094f5e0fdfc9840f34e2466fa",
+  "ledger_sha256_after_resume": "181729e0a078d1e06a50bd2791cbcd6d6898ab9094f5e0fdfc9840f34e2466fa",
+  "resume_ledger_identical": true,
+  "independent_integrity_probes_passed": 9
+}

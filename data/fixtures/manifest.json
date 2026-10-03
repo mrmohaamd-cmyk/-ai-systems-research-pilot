@@ -1,0 +1,9 @@
+{
+  "purpose": "fixture-verification",
+  "task_population": "four authored arithmetic cases for pipeline verification",
+  "source_revision": "authored-fixtures-v1",
+  "tasks_sha256": "e9832a9a3be7519c118475d79e92eaadd6d18407101734e8652e52b17f8db357",
+  "key_sha256": "78c1a5dc892a980a24bfea89257e5be84cdfb3885e0fd6858a70022a5410b44d",
+  "n": 4,
+  "licence": "Repository MIT licence; original fixtures, not GSM8K"
+}

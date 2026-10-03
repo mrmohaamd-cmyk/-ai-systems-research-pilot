@@ -1,0 +1,8 @@
+test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) ... ok
+test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) ... ok
+test_exact_thresholds_pass_only_for_further_study (test_feasibility.FeasibilityScreenTests.test_exact_thresholds_pass_only_for_further_study) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK

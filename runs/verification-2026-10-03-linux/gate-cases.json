@@ -1,0 +1,81 @@
+{
+  "tests_run": 3,
+  "successful": true,
+  "subcases": [
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (field='run_status', value='stopped')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (field='missing_stage_records', value=1)",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (field='unpriced_attempts', value=1)",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (field='physical_calls', value=299)",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (field='physical_calls', value=301)",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (incomplete_condition='A')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (incomplete_condition='B')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive",
+      "case": "test_each_incomplete_or_unpriced_guard_is_inconclusive (test_feasibility.FeasibilityScreenTests.test_each_incomplete_or_unpriced_guard_is_inconclusive) (incomplete_condition='C')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='difference', condition='B_minus_A')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='difference', condition='B_minus_C')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='regressions', condition='B_minus_A')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='regressions', condition='B_minus_C')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='p95_complete_request_time_s_exploratory', condition='B')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='known_standalone_cost_estimate_usd', condition='B')",
+      "passed": true
+    },
+    {
+      "test": "test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently",
+      "case": "test_each_threshold_fails_independently (test_feasibility.FeasibilityScreenTests.test_each_threshold_fails_independently) (field='correct', condition='B')",
+      "passed": true
+    }
+  ]
+}

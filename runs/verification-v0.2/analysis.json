@@ -1,0 +1,195 @@
+{
+  "run_id": "verification-v0.2",
+  "freeze_id": "e70760a953fa15907ae749305fa96fbb32f4a669cc398f31db0fbccfe3be1483",
+  "scorer": "numeric-final-v1",
+  "verification_only": true,
+  "run_status": "complete",
+  "study_type": "fixture-verification",
+  "conditions": {
+    "A": {
+      "correct": 2,
+      "planned_tasks": 4,
+      "accuracy": 0.5,
+      "accuracy_95_interval": [
+        0.06758598648854253,
+        0.9324140135114569
+      ],
+      "latency_complete_workflows_n": 4,
+      "mean_complete_request_time_s": 5.703749991425866e-06,
+      "p95_complete_request_time_s_exploratory": 1.1266999990766635e-05,
+      "known_standalone_cost_estimate_usd": 0.0,
+      "known_standalone_input_tokens": 400,
+      "known_standalone_output_tokens": 48,
+      "final_numeric_changes_from_A": 0,
+      "correct_initial_text_changed": 0,
+      "invalid_final_formats": 0,
+      "non_ok_finals": 0
+    },
+    "B": {
+      "correct": 2,
+      "planned_tasks": 4,
+      "accuracy": 0.5,
+      "accuracy_95_interval": [
+        0.06758598648854253,
+        0.9324140135114569
+      ],
+      "latency_complete_workflows_n": 4,
+      "mean_complete_request_time_s": 1.758700005893843e-05,
+      "p95_complete_request_time_s_exploratory": 2.6709000167102204e-05,
+      "known_standalone_cost_estimate_usd": 0.0,
+      "known_standalone_input_tokens": 1200,
+      "known_standalone_output_tokens": 144,
+      "final_numeric_changes_from_A": 3,
+      "correct_initial_text_changed": 1,
+      "invalid_final_formats": 1,
+      "non_ok_finals": 0
+    },
+    "C": {
+      "correct": 2,
+      "planned_tasks": 4,
+      "accuracy": 0.5,
+      "accuracy_95_interval": [
+        0.06758598648854253,
+        0.9324140135114569
+      ],
+      "latency_complete_workflows_n": 4,
+      "mean_complete_request_time_s": 1.4950499974020204e-05,
+      "p95_complete_request_time_s_exploratory": 2.3005000002740417e-05,
+      "known_standalone_cost_estimate_usd": 0.0,
+      "known_standalone_input_tokens": 1200,
+      "known_standalone_output_tokens": 144,
+      "final_numeric_changes_from_A": 2,
+      "correct_initial_text_changed": 1,
+      "invalid_final_formats": 1,
+      "non_ok_finals": 0
+    }
+  },
+  "contrasts": {
+    "B_minus_A": {
+      "n": 4,
+      "gains": 1,
+      "regressions": 1,
+      "difference": 0.0,
+      "familywise_95_interval": [
+        -0.8786968825637916,
+        0.8786968825637916
+      ],
+      "mcnemar_exact_p_unadjusted": 1.0,
+      "bonferroni_p": 1
+    },
+    "B_minus_C": {
+      "n": 4,
+      "gains": 2,
+      "regressions": 2,
+      "difference": 0.0,
+      "familywise_95_interval": [
+        -0.9340003335886513,
+        0.9340003335886513
+      ],
+      "mcnemar_exact_p_unadjusted": 1.0,
+      "bonferroni_p": 1
+    }
+  },
+  "physical_calls": 20,
+  "known_physical_cost_estimate_usd": 0.0,
+  "unpriced_attempts": 0,
+  "call_status_counts": {
+    "ok": 20
+  },
+  "missing_stage_records": 0,
+  "outcomes": [
+    {
+      "id": "fixture-1",
+      "A": {
+        "score": 0,
+        "parsed_answer": "8",
+        "status": "ok",
+        "format_valid": true
+      },
+      "B": {
+        "score": 1,
+        "parsed_answer": "9",
+        "status": "ok",
+        "format_valid": true
+      },
+      "C": {
+        "score": 0,
+        "parsed_answer": "8",
+        "status": "ok",
+        "format_valid": true
+      }
+    },
+    {
+      "id": "fixture-2",
+      "A": {
+        "score": 1,
+        "parsed_answer": "12",
+        "status": "ok",
+        "format_valid": true
+      },
+      "B": {
+        "score": 0,
+        "parsed_answer": "10",
+        "status": "ok",
+        "format_valid": true
+      },
+      "C": {
+        "score": 1,
+        "parsed_answer": "12",
+        "status": "ok",
+        "format_valid": true
+      }
+    },
+    {
+      "id": "fixture-3",
+      "A": {
+        "score": 1,
+        "parsed_answer": "20",
+        "status": "ok",
+        "format_valid": true
+      },
+      "B": {
+        "score": 1,
+        "parsed_answer": "20",
+        "status": "ok",
+        "format_valid": true
+      },
+      "C": {
+        "score": 0,
+        "parsed_answer": null,
+        "status": "ok",
+        "format_valid": false
+      }
+    },
+    {
+      "id": "fixture-4",
+      "A": {
+        "score": 0,
+        "parsed_answer": "3",
+        "status": "ok",
+        "format_valid": true
+      },
+      "B": {
+        "score": 0,
+        "parsed_answer": null,
+        "status": "ok",
+        "format_valid": false
+      },
+      "C": {
+        "score": 1,
+        "parsed_answer": "4",
+        "status": "ok",
+        "format_valid": true
+      }
+    }
+  ],
+  "decision": "NO_EFFICACY_INFERENCE_FIXTURE",
+  "limitations": [
+    "Accuracy includes every planned task; failures/missing outputs score zero.",
+    "Time statistics sum request durations for successful workflows; exclude orchestration overhead and are not measured standalone end-to-end latency.",
+    "Costs calculated from supplied rates are estimates, not reconciled invoices.",
+    "Shared A is charged in each standalone workflow but only once in physical totals.",
+    "Intervals assume independent task units; benchmark contamination and transfer remain unresolved.",
+    "Fixture token counts are synthetic and fixture latency is not model latency."
+  ]
+}
