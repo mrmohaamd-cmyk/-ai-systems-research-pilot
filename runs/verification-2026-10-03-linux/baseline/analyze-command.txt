@@ -1,0 +1,1 @@
+{"run_id": "run", "decision": "NO_EFFICACY_INFERENCE_FIXTURE", "physical_calls": 20}

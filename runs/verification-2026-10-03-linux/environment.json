@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-03",
+  "platform": "Linux",
+  "python": "3.12.14",
+  "source_head": "9f241074a23d0b5c4828db0df1ca9f5788aac752",
+  "transferred_patch_sha256": "836b98b9cb06d87dac3abe001c8809b948a933ef15d736bc4f99e8c8b7027b88",
+  "tests_added_sha256": "5add7c8d6f0bd4a6b94f51ea5655b66b438fe43ef656874b63c9aa0209b789bf",
+  "runtime_changed": false,
+  "network_guard": "Python audit hook rejects socket.connect, socket.getaddrinfo, socket.sendto, socket.sendmsg",
+  "credentials": "PILOT_API_KEY unset for CLI; unit-test HTTP adapter uses mocked transport and dummy credential only",
+  "live_model_requests": 0,
+  "installations": 0,
+  "repository_publication": "No commit, push, merge, or deploy",
+  "transfer_note": "Received documentation hunk had an ASCII hyphen/em-dash context mismatch and was replaced by the current verified Linux report. Test/static-evidence hunks applied unchanged. Windows source hashes preserve checkout bytes and can differ due to line endings."
+}
