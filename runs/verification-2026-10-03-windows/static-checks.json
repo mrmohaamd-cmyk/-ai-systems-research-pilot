@@ -1,0 +1,48 @@
+{
+  "scope": "Static syntax and inventory only; no pilot import or runtime test execution",
+  "base_head": "9f241074a23d0b5c4828db0df1ca9f5788aac752",
+  "platform": "Windows",
+  "python": "3.12.14",
+  "sources": {
+    "pilot/__init__.py": {
+      "sha256": "5cf309786e1e464c281655f9474dff66512b95a672cbe793717d2f34b7ed4805",
+      "test_methods": 0
+    },
+    "pilot/__main__.py": {
+      "sha256": "42b70d3276f1907f18bbcd04dbe797bd6785852c0b56e7969c7b1cbb4f85fb45",
+      "test_methods": 0
+    },
+    "pilot/analyze.py": {
+      "sha256": "e8da97f189ffc04e6530b88b4f5e02bd34e82b0c87eba05f7359f2600df51e5e",
+      "test_methods": 0
+    },
+    "pilot/core.py": {
+      "sha256": "240e5bf34d90fac4b0d262e723789568bef0d65935689009e016c53b0ed5b196",
+      "test_methods": 0
+    },
+    "pilot/prepare_data.py": {
+      "sha256": "907e7f8fa22fdd4344f36c8f48a85c385226b17d26004c6eae62203e43cb57b3",
+      "test_methods": 0
+    },
+    "pilot/run.py": {
+      "sha256": "87a32491c8a0d01c613ca1f20f00332448536b5c9603817d8b99be3ece958a4f",
+      "test_methods": 0
+    },
+    "tests/test_core.py": {
+      "sha256": "b90adf311c77f63cb6bdf363187ea4b1793a52dea714d10d1493bb2ec48a667d",
+      "test_methods": 21
+    },
+    "tests/test_feasibility.py": {
+      "sha256": "5add7c8d6f0bd4a6b94f51ea5655b66b438fe43ef656874b63c9aa0209b789bf",
+      "test_methods": 3
+    }
+  },
+  "syntax_checks_passed": 8,
+  "test_methods_defined_not_executed": 24,
+  "json_parse_checks_passed": [
+    "config/fixture.json",
+    "config/live.template.json",
+    "data/fixtures/manifest.json",
+    "prompts.json"
+  ]
+}

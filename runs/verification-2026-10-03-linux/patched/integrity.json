@@ -1,0 +1,54 @@
+[
+  {
+    "check": "freeze refuses overwrite",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Freeze already exists; use a new file and record an amendment"
+  },
+  {
+    "check": "freeze field tampering rejected before run",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Freeze was modified"
+  },
+  {
+    "check": "task byte tampering rejected before run",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Task file changed"
+  },
+  {
+    "check": "resume performs no adapter calls and preserves ledger",
+    "passed": true
+  },
+  {
+    "check": "answer key byte tampering rejected at analysis",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Answer-key hash mismatch"
+  },
+  {
+    "check": "duplicate ledger event rejected on resume",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Duplicate call start"
+  },
+  {
+    "check": "duplicate ledger event rejected at analysis",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Duplicate call start"
+  },
+  {
+    "check": "simultaneous run lock rejected",
+    "passed": true,
+    "error_type": "BlockingIOError",
+    "message": "[Errno 11] Resource temporarily unavailable"
+  },
+  {
+    "check": "signed freeze with differing runtime hash rejected",
+    "passed": true,
+    "error_type": "ValueError",
+    "message": "Runtime code changed; create a new freeze and run"
+  }
+]
